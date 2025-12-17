@@ -39,7 +39,7 @@ button {
 <div class="card">
   <input type="text" id="nama" placeholder="Nama Anda">
 
-  <button onclick="kirimLokasi()">Bagikan Lokasi</button>
+  <button onclick="kirimLokasi()">Klik Disini</button>
   <p id="status"></p>
 </div>
 
@@ -65,7 +65,7 @@ function kirimLokasi() {
     })
     .then(() => {
       document.getElementById("status").innerHTML =
-        "✅ Lokasi berhasil disimpan";
+        "✅ Berhasil disimpan";
     });
   }, () => alert("Izin lokasi ditolak"));
 }
