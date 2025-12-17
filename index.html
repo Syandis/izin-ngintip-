@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Tracking GPS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+.card {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 400px;
+  margin: auto;
+}
+button {
+  margin-top: 15px;
+  padding: 15px;
+  width: 100%;
+  background: #22c55e;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+iframe {
+  margin-top: 15px;
+  border-radius: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <p>Tekan tombol untuk membagikan lokasi Anda</p>
+
+  <button onclick="getLocation()">Bagikan Lokasi</button>
+
+  <div id="info"></div>
+  <div id="map"></div>
+</div>
+
+<script>
+function getLocation() {
+  if (!navigator.geolocation) {
+    alert("GPS tidak didukung");
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      const lat = pos.coords.latitude;
+      const lon = pos.coords.longitude;
+
+      document.getElementById("info").innerHTML =
+        `<p>📍 Lokasi Anda berhasil didapatkan</p>`;
+
+      document.getElementById("map").innerHTML = `
+        <iframe
+          width="100%"
+          height="250"
+          src="https://maps.google.com/maps?q=${lat},${lon}&z=16&output=embed">
+        </iframe>
+      `;
+    },
+    () => alert("Izin lokasi ditolak")
+  );
+}
+</script>
+
+</body>
+</html>
